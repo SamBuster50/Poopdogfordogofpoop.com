@@ -9,11 +9,62 @@
     <h1><a href="https://thecubicle.com">Hello</a><h1>
     <body>
         </a>
-	<form action="search.php" method="get">
-  	<label for="search">Search:</label>
-  	<input type="text" id="search" name="q" placeholder="Search...">
-  	<button type="submit">Search</button>
-	</form>
+	<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Search Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+  </head>
+  <body>
+    <input type="text" id="search" placeholder="Search...">
+    <ul id="results"></ul>
+    <script>
+      // Define the data to be searched
+      const data = [
+        { title: 'Apple', description: 'A fruit' },
+        { title: 'Banana', description: 'Another fruit' },
+        { title: 'Carrot', description: 'A vegetable' },
+        { title: 'Dog', description: 'An animal' },
+        { title: 'Elephant', description: 'Another animal' }
+      ];
+
+      // Define the options for the Fuse.js search algorithm
+      const options = {
+        keys: ['title', 'description']
+      };
+
+      // Initialize the Fuse.js search object with the data and options
+      const fuse = new Fuse(data, options);
+
+      // Get references to the search input and results list
+      const searchInput = document.getElementById('search');
+      const resultsList = document.getElementById('results');
+
+      // Function to update the results list based on the search query
+      function updateResults(query) {
+        // Perform the search using Fuse.js
+        const results = fuse.search(query);
+
+        // Clear the current results from the list
+        resultsList.innerHTML = '';
+
+        // Add the new results to the list
+        results.forEach(result => {
+          const li = document.createElement('li');
+          li.innerText = result.title;
+          resultsList.appendChild(li);
+        });
+      }
+
+      // Listen for changes to the search input and update the results list
+      searchInput.addEventListener('input', event => {
+        updateResults(event.target.value);
+      });
+    </script>
+  </body>
+</html>
+
 
         Why are you here? I mean like, why would you type poopdog.html? What's the point?<br>
         I'm not saying you should leave, I just mean there are things like <a href="https://www.youtube.com">youtube</a>  
