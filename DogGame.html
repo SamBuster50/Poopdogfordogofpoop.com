@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dog Emoji Movement</title>
+	<style>
+		#dog {
+			font-size: 50px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+</head>
+<body>
+	<div id="dog">🐶</div>
+	<script>
+		document.addEventListener('keydown', function(event) {
+			if (event.code === 'KeyA') {
+				moveLeft();
+			} else if (event.code === 'KeyD') {
+				moveRight();
+			} else if (event.code === 'KeyW') {
+				moveUp();
+			} else if (event.code === 'KeyS') {
+				moveDown();
+			}
+		});
+
+		function moveLeft() {
+			var dog = document.getElementById('dog');
+			var currentLeft = parseInt(dog.style.left) || 0;
+			dog.style.left = currentLeft - 10 + 'px';
+		}
+
+		function moveRight() {
+			var dog = document.getElementById('dog');
+			var currentLeft = parseInt(dog.style.left) || 0;
+			dog.style.left = currentLeft + 10 + 'px';
+		}
+
+		function moveUp() {
+			var dog = document.getElementById('dog');
+			var currentTop = parseInt(dog.style.top) || 0;
+			dog.style.top = currentTop - 10 + 'px';
+		}
+
+		function moveDown() {
+			var dog = document.getElementById('dog');
+			var currentTop = parseInt(dog.style.top) || 0;
+			dog.style.top = currentTop + 10 + 'px';
+		}
+	</script>
+</body>
+</html>
